@@ -29,3 +29,30 @@ mus = [
     Mus(3, "Васильев Антон Дмитриевич", 89000, 3),
     Mus(4, "Герасимов Геннадий Васильевич",64000, 4),
     Mus(5, "Зайцев Михаил Анатольевич", 95000, 4),
+]
+
+mus_orch = [
+    Mus_Orch(1, 5),
+    Mus_Orch(2, 3),
+    Mus_Orch(4, 3),
+    Mus_Orch(5, 2),
+    Mus_Orch(3, 1),
+
+    Mus_Orch(1, 4),
+    Mus_Orch(2, 4),
+    Mus_Orch(3, 4),
+    Mus_Orch(4, 2),
+    Mus_Orch(5, 3),
+]
+
+def main():
+    one_to_many = [(o.name, m.fio, m.sal) 
+        for o in orch
+        for m in mus
+
+    print("Задание Г1")
+    print("Задание Г2")
+    print("Задание Г3")
+
+if __name__ == '__main__':
+    main()
