@@ -49,8 +49,10 @@ def main():
     one_to_many = [(o.name, m.fio, m.sal) 
         for o in orch
         for m in mus
+        if o.name[0] == 'А']
 
-    print("Задание Г1")
+    print("Задание Г1:")
+    print(one_to_many)
     print("Задание Г2")
     print("Задание Г3")
 
