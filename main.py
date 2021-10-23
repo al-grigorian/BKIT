@@ -10,7 +10,18 @@ class Orch:
         self.id = id
         self.name = name
 
-mus = []
-orch = []
+class MusOrch:
+    def __init__(self, mus_id, orch_id):
+        self.mus_id = mus_id
+        self.orch_id = orch_id
 
-class 
+orch = [
+    Orch(5, "Московский симфонический оркестр"),
+    Orch(7, "Симфонический оркестр Большого театра"),
+    Orch(2, 
+]
+
+mus = [
+    Mus(2, "Иванов Дмитрий Владимирович", 67000, ),
+    Mus(4, "Дмитриев Владимир Иванович", 55000, )
+    ]
