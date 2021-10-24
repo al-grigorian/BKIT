@@ -95,13 +95,19 @@ def main():
     #---------------------------------------------------------------------
 
     #--------------------------Задание Г3-------------------------------
-    
-
-
-
-
+    res3_unsorted = []
+    for o in orch:
+        # cписок музыкантов оркестра
+        orch_mus = list(filter(lambda i: i[2] == o.name, many_to_many))
+        if len(orch_mus) > 0:
+            fio_mus_unsorted = [fio for fio,_,_ in orch_mus]
+            # отсортрованный список фамилий музыкантов
+            fio_mus_sorted = sorted(fio_mus_unsorted, key=operator.itemgetter(0))
+            res3_unsorted.append((o.name, fio_mus_sorted))
+    res3_sorted = sorted(res3_unsorted, key=operator.itemgetter(0), reverse=True)
+    print("Задание Г3: ")
+    print(res3_sorted)
     #-------------------------------------------------------------------
-
 
 if __name__ == '__main__':
     main()
