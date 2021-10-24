@@ -52,9 +52,25 @@ def main():
         if m.orc_id == o.id
     ]
 
+    many_to_many_temp = [(o.name, m_o.orch_id, m_o.mus_id) 
+        for o in orch 
+        for m_o in mus_orch
+        if o.id == m_o.orch_id]
+    
+    many_to_many = [(m.fio, m.sal, orch_name) 
+        for orch_name, orch_id, mus_id in many_to_many_temp
+        for m in mus if m.id == mus_id]
 
+    d_orch_mus = {}
+    for elem in one_to_many:
+        if elem[0][0] == 'А':
+            d_orch_mus[elem[0]] = elem[1]
+    
     print("Задание Г1:")
-    print(one_to_many)
+    print(d_orch_mus)
+
+    for elem in one_to_many:
+        
     print("Задание Г2")
     print("Задание Г3")
 
