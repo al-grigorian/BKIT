@@ -1,3 +1,5 @@
+import operator
+
 class Mus:
     def __init__(self, id, fio, sal, orch_id):
         self.id = id
@@ -36,22 +38,18 @@ mus_orch = [
     Mus_Orch(2, 1),
     Mus_Orch(3, 3),
     Mus_Orch(4, 4),
-    Mus_Orch(5, 4),
-
-    Mus_Orch(1, 4),
-    Mus_Orch(2, 4),
-    Mus_Orch(3, 4),
-    Mus_Orch(4, 2),
-    Mus_Orch(5, 3),
+    Mus_Orch(5, 4)
 ]
 
 def main():
+    # соединение данных один-ко-многим
     one_to_many = [(o.name, m.fio, m.sal) 
         for o in orch
         for m in mus
         if m.orc_id == o.id
     ]
 
+    # соединение данных многие-ко-многим
     many_to_many_temp = [(o.name, m_o.orch_id, m_o.mus_id) 
         for o in orch 
         for m_o in mus_orch
@@ -61,25 +59,49 @@ def main():
         for orch_name, orch_id, mus_id in many_to_many_temp
         for m in mus if m.id == mus_id]
 
-    d_orch_mus = {}
-    for elem in one_to_many:
-        if elem[0][0] == 'А':
-            d_orch_mus[elem[0]] = elem[1]
-    
-    print("Задание Г1:")
-    print(d_orch_mus)
 
-    m = 0
-    res = []
+    #------------------------Задание Г1-------------------------------------------
+    res1 = []
     for o in orch:
-        for elem in one_to_many:
-            if o.name == elem[0]:
-                if elem[2] > m:
-                    m = elem[2]
-                    
+        if o.name[0] == 'А':
+            # cписок музыкантов оркестра
+            orch_mus = list(filter(lambda i: i[0] == o.name, one_to_many))
+            if len(orch_mus) > 0:
+                # имена сотрудников отдела
+                names_mus = [name for _,name,_ in orch_mus]
+                res1.append((o.name, names_mus))
+    print("Задание Г1: ")
+    print(res1)
+    #-----------------------------------------------------------------------------
 
-    print("Задание Г2")
-    print("Задание Г3")
+
+    #------------------------Задание Г2---------------------------------
+    # список для оркестров, названия которых начинаются с буквы 'А'
+    res2_unsorted = []
+    # зарплаты
+    sal = []
+    for o in orch:
+        # cписок музыкантов оркестра
+        orch_mus = list(filter(lambda i: i[0] == o.name, one_to_many))
+        if len(orch_mus) > 0:
+            # зарплаты сотрудников отдела
+            sal = [sal for _,_,sal in orch_mus]
+            # максимальная зарплата
+            max_sal = max(sal)
+            res2_unsorted.append((o.name, max_sal))
+    res2_sorted = sorted(res2_unsorted, key=operator.itemgetter(1), reverse=True)
+    print("Задание Г2: ")
+    print(res2_sorted)
+    #---------------------------------------------------------------------
+
+    #--------------------------Задание Г3-------------------------------
+    
+
+
+
+
+    #-------------------------------------------------------------------
+
 
 if __name__ == '__main__':
     main()
