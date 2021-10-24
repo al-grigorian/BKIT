@@ -69,8 +69,15 @@ def main():
     print("Задание Г1:")
     print(d_orch_mus)
 
-    for elem in one_to_many:
-        
+    m = 0
+    res = []
+    for o in orch:
+        for elem in one_to_many:
+            if o.name == elem[0]:
+                if elem[2] > m:
+                    m = elem[2]
+                    
+
     print("Задание Г2")
     print("Задание Г3")
 
