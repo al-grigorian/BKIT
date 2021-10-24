@@ -48,7 +48,7 @@ def main():
         for m in mus
         if m.orc_id == o.id
     ]
-
+    
     # соединение данных многие-ко-многим
     many_to_many_temp = [(o.name, m_o.orch_id, m_o.mus_id) 
         for o in orch 
