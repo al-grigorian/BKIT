@@ -67,7 +67,7 @@ def main():
             # cписок музыкантов оркестра
             orch_mus = list(filter(lambda i: i[0] == o.name, one_to_many))
             if len(orch_mus) > 0:
-                # имена сотрудников отдела
+                # имена музыкантов оркестра
                 names_mus = [name for _,name,_ in orch_mus]
                 res1.append((o.name, names_mus))
     print("Задание Г1: ")
@@ -76,7 +76,7 @@ def main():
 
 
     #------------------------Задание Г2---------------------------------
-    # список для оркестров, названия которых начинаются с буквы 'А'
+    # список оркестров, названия которых начинаются с буквы 'А'
     res2_unsorted = []
     # зарплаты
     sal = []
@@ -84,7 +84,7 @@ def main():
         # cписок музыкантов оркестра
         orch_mus = list(filter(lambda i: i[0] == o.name, one_to_many))
         if len(orch_mus) > 0:
-            # зарплаты сотрудников отдела
+            # зарплаты музыкантов оркестра
             sal = [sal for _,_,sal in orch_mus]
             # максимальная зарплата
             max_sal = max(sal)
@@ -101,7 +101,7 @@ def main():
         orch_mus = list(filter(lambda i: i[2] == o.name, many_to_many))
         if len(orch_mus) > 0:
             fio_mus_unsorted = [fio for fio,_,_ in orch_mus]
-            # отсортрованный список фамилий музыкантов
+            # отсортированный список фамилий музыкантов
             fio_mus_sorted = sorted(fio_mus_unsorted, key=operator.itemgetter(0))
             res3_unsorted.append((o.name, fio_mus_sorted))
     res3_sorted = sorted(res3_unsorted, key=operator.itemgetter(0), reverse=True)
